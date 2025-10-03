@@ -1,36 +1,61 @@
-#include "Linker.cxx"   //Includes Linker.cxx for linking modules
-#include <iostream>     //Lib for user inputs
-#include <string>       //Lib for strings
-#include <fstream>      //lib to interact w/ fs
-#include <filesystem>   //lib to interface fs
-namespace fs = std::filesystem; //sets fs namespace
-using namespace std;    //sets namespace
+#include "Base_Includes.cxx"    //Lib Includes
+#include "Linker.cxx"           //Includes Linker.cxx for linking modules
 
 void Main_Menu(){
-    cout << "Server Contoller" << endl;
+    cout << endl;
+    cout << "##########################" << endl;
+    cout << "###                    ###" << endl;
+    cout << "###  Server Contoller  ###" << endl;
+    cout << "###                    ###" << endl;
+    cout << "##########################" << endl;
     cout << endl;
     cout << "--- Server Options ---" << endl;
     cout << endl;
-    cout << " S) ModPack Selection" << endl;
-    cout << " E) Edit Script Option" << endl;
-    cout << " M) ModPack Setup" << endl;
-    cout << " A) ModPack Archiving" << endl;
-    cout << " P) Server Power Options" << endl;
+    cout << " 1) ModPack Selection" << endl;
+    cout << " 2) New ModPack Setup" << endl;
+    cout << " 3) ModPack Archiving" << endl;
+    cout << " 4) Edit Script Option" << endl;
+    cout << " 5) Server Power Options" << endl;
     cout << endl;
-    cout << " Q) Quit" << endl;
+    cout << " 6) Quit" << endl;
     cout << endl;
 
     cout << "Select an option: ";
-    char option;
+    int option;
     cin >> option; // Get user input
     cout << endl;
 
-    
-    string path2 = "/home/skarf/Suwuver/ModPacks/";
-    for (const auto & entry : fs::directory_iterator(path2))
-        cout << entry.path() << endl;
+    switch (option)
+    {
+    case 1:
+        Server_Menu();
+        Main_Menu();
+        break;
+    case 2:
+        Directory_Lister();
+        break;
+    case 3:
+        cout << "O3";
+        break;
+    case 4:
+        cout << "O4";
+        break;
+    case 5:
+        cout << "O5";
+        break;
+    case 6:
+        cout << "O6";
+        break;
+    default:
+        cout << "Def tripped" << endl;
+        system("clear");
+        Main_Menu();
+        break;
+    }
 }
 
 int main(){
+    system("clear");
     Main_Menu();
+    return 0;
 }
