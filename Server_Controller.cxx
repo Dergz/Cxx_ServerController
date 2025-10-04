@@ -1,17 +1,30 @@
 #include "Base_Includes.cxx"    //Lib Includes
 
-vector<string> Server_Lister();
+// Establishes the functions so they can be called out of order
+vector<string> Server_Lister(int);
+void Server_Menu();
+string Server_Selector();
 
-void Server_Menu(){
+
+void Server_Menu(){ //ModPack menu
+
+    // Sets selected server incase its not set (on runtime)
+    //optional<string> Selected_Server;
+    //if (!Selected_Server) {
+    //    cout << "Server is NOT Selected";
+    //    string Selected_Server = "Null";
+    //}
+
     system("clear");
     cout << endl;
     cout << "--- ModPack Controller ---" << endl;
+    cout << endl;
+    cout << "Selected Server: " << endl;
     cout << endl;
     cout << " M) Select ModPack" << endl;
     cout << " O) ModPack Options" << endl;
     cout << " S) Start Server" << endl;
     cout << " E) Server Session" << endl;
-    //cout << " 5) OPTION" << endl;
     cout << endl;
     cout << " Q) Exit" << endl;
     cout << endl;
@@ -19,20 +32,20 @@ void Server_Menu(){
     cout << "Select an option: ";
     char option;
     cin >> option; // Get user input
+    option = toupper(option);
     cout << endl;
 
-    switch (option)
-    {
+    switch (option){
     case 'M':
-        cout << "O1";
+        Server_Selector();
         break;
-    case '2':
-        Server_Lister();
+    case 'O':
+        cout << "02";
         break;
-    case '3':
+    case 'S':
         cout << "O3";
         break;
-    case '4':
+    case 'E':
         cout << "O4";
         break;
     case 'Q':
@@ -45,15 +58,32 @@ void Server_Menu(){
     }
 }
 
-vector<string> Server_Lister(){
-    vector<string> ModPackNames;
-    //Reads a directory and lists all files and directories within
-    string path = "/home/skarf/Suwuver/ModPacks/";
-    cout << "Scanning Directory for ModPacks" << endl;
-    for (const auto & entry : fs::directory_iterator(path))
+vector<string> Server_Lister(int SUO){ //reads the directory containing modspacks and puts them into a vector
+    vector<string> ModPackNames;// Establishes the vector
+    string path = "/home/skarf/ModPacks/"; // Replace with a var so modpack dir can be changed
+
+    for (const auto & entry : fs::directory_iterator(path)){ //Adds each output into the vector
         ModPackNames.push_back(entry.path());
-    for (int i = 0; i < ModPackNames.size(); i++) {
-        cout << " " << i << ") " << ModPackNames[i] << endl;
     }
-    return ModPackNames;
+    
+    if (SUO == 1){ // if a var is true then show the output of the vector
+        cout << "Listing ModPacks In Directory" << endl;
+        for (int i = 0; i < ModPackNames.size(); i++) {
+            cout << " " << i << ") " << ModPackNames[i] << endl;
+        }
+    }
+
+    return ModPackNames; // Returns the vecotor containing mod pack names
+}
+
+string Server_Selector(){ // Selects the modpack and assigns it to a var for menu usage
+    vector ModPackNames=Server_Lister(1); //Gets serverlist and bot vars / outputs it
+    cout << "Please select a server: ";
+    int MPC;
+    cin >> MPC;
+    cout << "Selected Pack: ";
+    string Selected_Server=ModPackNames[MPC];
+    cout << Selected_Server << endl;
+    cout << endl;
+    return Selected_Server;
 }

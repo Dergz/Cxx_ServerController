@@ -2,6 +2,10 @@
 #include "Linker.cxx"           //Includes Linker.cxx for linking modules
 
 void Main_Menu(){
+    system("clear");
+    const float PVer = 0.2;
+    cout << "Program Version: V" << PVer << endl;
+    cout << endl;
     cout << endl;
     cout << "##########################" << endl;
     cout << "###                    ###" << endl;
@@ -11,40 +15,41 @@ void Main_Menu(){
     cout << endl;
     cout << "--- Server Options ---" << endl;
     cout << endl;
-    cout << " 1) ModPack Selection" << endl;
-    cout << " 2) New ModPack Setup" << endl;
-    cout << " 3) ModPack Archiving" << endl;
-    cout << " 4) Edit Script Option" << endl;
-    cout << " 5) Server Power Options" << endl;
+    cout << " S) ModPack Selection" << endl;
+    cout << " N) New ModPack Setup" << endl;
+    cout << " A) ModPack Archiving" << endl;
+    cout << " E) Edit Script Option" << endl;
+    cout << " P) Server Power Options" << endl;
     cout << endl;
-    cout << " 6) Quit" << endl;
+    cout << " Q) Quit" << endl;
     cout << endl;
 
     cout << "Select an option: ";
-    int option;
+    char option;
     cin >> option; // Get user input
+    option = toupper(option);
     cout << endl;
 
     switch (option)
     {
-    case 1:
+    case 'S':
         Server_Menu();
-        Main_Menu();
+        //Main_Menu();
         break;
-    case 2:
-        Directory_Lister();
+    case 'N':
+        cout << "02";
         break;
-    case 3:
+    case 'A':
         cout << "O3";
         break;
-    case 4:
+    case 'E':
         cout << "O4";
         break;
-    case 5:
+    case 'P':
         cout << "O5";
         break;
-    case 6:
-        cout << "O6";
+    case 'Q':
+        cout << "Exiting program" << endl;
         break;
     default:
         cout << "Def tripped" << endl;
