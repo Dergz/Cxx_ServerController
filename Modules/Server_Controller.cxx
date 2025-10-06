@@ -21,7 +21,7 @@ void Server_Menu()
     cout << endl;
     cout << "--- ModPack Controller ---" << endl;
     cout << endl;
-    cout << "Selected Server: " << endl;
+    cout << "Selected Server: " << endl; //Change to read settings for a selected Modpack
     cout << endl;
     cout << " M) Select ModPack" << endl; //Make constantant via a file
     cout << " O) ModPack Options" << endl;
