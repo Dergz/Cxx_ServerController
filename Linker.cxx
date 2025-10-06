@@ -1,3 +1,4 @@
-// Linker file that just includes the modules
+// Linker file that just includes the modules, For the main file only
 
-#include "Server_Controller.cxx"
+#include "Modules/Server_Controller.cxx"
+#include "Modules/File_Editor.cxx"
