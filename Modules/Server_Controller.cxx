@@ -1,34 +1,29 @@
 // MODULE, Controlls & Manipulates ModPacks
 #include "../Base_Includes.cxx" //Lib Includes
 
-
 // Establishes the functions so they can be called out of order
 vector<string> Server_Lister(int);
 void Server_Menu();
 string Server_Selector();
 
-void Server_Menu()
-{ // ModPack menu
+void Server_Menu(){ // ModPack menu, Char Based Options
 
-    // Sets selected server incase its not set (on runtime)
-    // optional<string> Selected_Server;
-    // if (!Selected_Server) {
-    //    cout << "Server is NOT Selected";
-    //    string Selected_Server = "Null";
-    //}
+    // Consider an input test to make sure check isnt always running?
+    // Run Check of settings file to set the last used modpack
+    // ^ If check returns null then have the user select a modpack
 
     system("clear");
     cout << endl;
     cout << "--- ModPack Controller ---" << endl;
     cout << endl;
-    cout << "Selected Server: " << endl; //Change to read settings for a selected Modpack
+    cout << "Selected Server: " << endl;    // Make constantant via settings
     cout << endl;
-    cout << " M) Select ModPack" << endl; //Make constantant via a file
-    cout << " O) ModPack Options" << endl;
-    cout << " S) Start Server" << endl;
-    cout << " E) Server Session" << endl;
+    cout << " M) Select ModPack" << endl;
+    cout << " O) ModPack Options" << endl;  // ModPack settings, file in modpackdir, jvm ver, start file, etc (Settings setup if none)
+    cout << " S) Start Server" << endl;     // Starts a modpack, run check for setting to start, if not run settings setup
+    cout << " E) Server Session" << endl;   // Screens into the running server
     cout << endl;
-    cout << " Q) Exit" << endl;
+    cout << " Q) Exit" << endl;             // Returns to the main menu
     cout << endl;
 
     cout << "Select an option: ";
@@ -40,7 +35,8 @@ void Server_Menu()
     switch (option)
     {
     case 'M':
-        Server_Selector();
+        Server_Selector(); 
+        Server_Menu();
         break;
     case 'O':
         cout << "02";
@@ -55,14 +51,17 @@ void Server_Menu()
         system("clear");
         break;
     default:
-        cout << "Def tripped" << endl;
+        cout << "Not an option" << endl;
+        system("sleep 1");
+        system("clear");
         Server_Menu();
         break;
     }
 }
 
-vector<string> Server_Lister(int SUO)
-{                                          // reads the directory containing modspacks and puts them into a vector
+
+
+vector<string> Server_Lister(int SUO){ // reads the directory containing modspacks and puts them into a vector
     vector<string> ModPackNames;           // Establishes the vector
     string path = "/home/skarf/Suwuver/ModPacks/"; // Replace with a var so modpack dir can be changed
     int pathlength = path.length();
@@ -84,9 +83,10 @@ vector<string> Server_Lister(int SUO)
     return ModPackNames; // Returns the vecotor containing mod pack names
 }
 
-string Server_Selector()
-{                                           // Selects the modpack and assigns it to a var for menu usage
-    vector ModPackNames = Server_Lister(1); // Gets serverlist and bot vars / outputs it
+
+
+string Server_Selector(){ // Selects the modpack and assigns it to a var for menu usage
+    vector ModPackNames = Server_Lister(1); // Gets serverlist
     cout << "Please select a server: ";
     int MPC;
     cin >> MPC;

@@ -1,0 +1,5 @@
+First line
+This line has the needle
+Another line
+needle at start
+Last line

@@ -1,9 +1,29 @@
-#include "Base_Includes.cxx"    //Lib Includes
-#include "Linker.cxx"           //Includes Linker.cxx for linking modules
+#include "Base_Includes.cxx"
+#include "Modules/Server_Controller.cxx"
 
-void Main_Menu(){
+void Main_Menu();
+void Power_Menu();
+float PVersion();
+int main();
+
+
+
+int main(){ // Starts the script
     system("clear");
-    const float PVer = 0.4;
+    Main_Menu();
+    return 0;
+}
+
+
+float PVersion(){ // Establishes the programs current version, jsut to be fancy
+    const float PVer = 0.5;
+    return PVer;
+}
+
+
+void Main_Menu(){ // Scripts Main Menu
+    system("clear");
+    float PVer = PVersion();
     cout << "Program Version: V" << PVer << endl;
     cout << endl;
     cout << endl;
@@ -15,11 +35,11 @@ void Main_Menu(){
     cout << endl;
     cout << "--- Server Options ---" << endl;
     cout << endl;
-    cout << " S) ModPack Selection" << endl;
+    cout << " C) ModPack Controller" << endl;
     cout << " N) New ModPack Setup" << endl;
     cout << " A) ModPack Archiving" << endl;
     cout << " E) Edit Script Option" << endl;
-    cout << " P) Server Power Options" << endl;
+    cout << " S) System Options   //Lib Includes" << endl;
     cout << endl;
     cout << " Q) Quit" << endl;
     cout << endl;
@@ -32,9 +52,9 @@ void Main_Menu(){
 
     switch (option)
     {
-    case 'S':
+    case 'C':
         Server_Menu();
-        //Main_Menu();
+        Main_Menu(); // Commented out till testing done
         break;
     case 'N':
         cout << "02";
@@ -45,22 +65,61 @@ void Main_Menu(){
     case 'E':
         cout << "O4";
         break;
-    case 'P':
-        cout << "O5";
+    case 'S':
+        Power_Menu();
         break;
     case 'Q':
         cout << "Exiting program" << endl;
         break;
     default:
-        cout << "Def tripped" << endl;
+        cout << "Not an option" << endl;
+        system("sleep 1");
         system("clear");
         Main_Menu();
         break;
     }
 }
 
-int main(){
+
+void Power_Menu(){ // Power Menu
+
+    // Consider an input test to make sure check isnt always running?
+    // Run Check of settings file to set the last used modpack
+    // ^ If check returns null then have the user select a modpack
+
     system("clear");
-    Main_Menu();
-    return 0;
+    cout << endl;
+    cout << "--- System Power Menu ---" << endl;
+    cout << endl;
+    cout << " 1) Power Off" << endl;
+    cout << " 2) Reboot" << endl;
+    cout << endl;
+    cout << " Q) Back to main menu" << endl;
+    cout << endl;
+
+    cout << "Select an option: ";
+    char option;
+    cin >> option; // Get user input
+    option = toupper(option);
+    cout << endl;
+
+    switch (option)
+    {
+    case '1':
+        system("systemctl poweroff");
+        break;
+    case '2':
+        system("systemctl reboot");
+        break;
+    case 'Q':
+        system("clear");
+        Main_Menu();
+        break;
+    default:
+        cout << "Not an option" << endl;
+        system("sleep 1");
+        system("clear");
+        Power_Menu();
+        break;
+    }
 }
