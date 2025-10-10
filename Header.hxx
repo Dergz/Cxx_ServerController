@@ -29,7 +29,6 @@ typedef pair<string, string> pairss;
 
 //Global_Funcs
 void Mapping_INIT();
-std::unordered_map<int,std::string> Mapping_INIT_DEP();
 std::string Map_Reader(std::unordered_map<int,std::string>, int);
 std::unordered_map<int,std::string> Map_Changer(std::unordered_map<int,std::string>, int, string);
 

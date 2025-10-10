@@ -1,4 +1,6 @@
 #include "Header.hxx"
+#include "Modules/Global_Funcs.cxx"
+#include "Modules/Server_Controller.cxx"
 
 int main(){ // Starts the script
     Mapping_INIT();
@@ -10,7 +12,7 @@ int main(){ // Starts the script
 
 
 float PVersion(){ // Establishes the programs current version, jsut to be fancy
-    const float PVer = 0.6;
+    const float PVer = 0.7;
     return PVer;
 }
 

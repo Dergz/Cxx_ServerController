@@ -1,35 +1,21 @@
 #include "../Header.hxx"
 
+// Define the global SMAP (matches 'extern' in Header.hxx)
+std::unordered_map<int,std::string> SMAP;
+
 // Inits the "config" map
-std::unordered_map<int,std::string> Mapping_INIT_DEP(){
-    std::unordered_map<int,std::string> ConfigMap ={
-    {0, "Null"},    //Current ModPack
-    {1, "X"},       //Unassigned
-    {2, "Y"}        //Unassigned
-    };
-
-    for (auto i : ConfigMap){
-        std::cout << i.first << ": " << i.second << std::endl;
-    }
-
-
-    std::cout << std::endl;
-    std::cout << "Split_Debug" << std::endl;
-
-    return ConfigMap;
-}
-
 void Mapping_INIT(){
-    SMAP ={
-    {0, "Null"},    //Current ModPack
-    {1, "X"},       //Unassigned
-    {2, "Y"}        //Unassigned
-    };
+    // populate the global SMAP
+    SMAP.clear();
+    SMAP[0] = "Null";    // Current ModPack
+    SMAP[1] = "X";       // Unassigned
+    SMAP[2] = "Y";       // Unassigned
 
-    for (auto i : SMAP){
+    for (const auto &i : SMAP){
         std::cout << i.first << ": " << i.second << std::endl;
     }
 }
+
 
 // Reads something out of the maping
 std::string Map_Reader(std::unordered_map<int,std::string> SMAP, int Element){
@@ -49,6 +35,7 @@ std::string Map_Reader(std::unordered_map<int,std::string> SMAP, int Element){
     else std::cout << "Not Found";
     return "ERROR";
 }
+
 
 std::unordered_map<int,std::string> Map_Changer(std::unordered_map<int,std::string> SMAP, int Element, string NewElVal){
 

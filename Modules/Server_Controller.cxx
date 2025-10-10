@@ -92,5 +92,6 @@ void Server_Selector(){ // Selects the modpack and assigns it to a var for menu 
     cout << Selected_Server << endl;
     cout << endl;
 
-    SMAP[2] = Selected_Server;
+    //SMAP[0] = Selected_Server;
+    SMAP.at(0) = Selected_Server;
 }
