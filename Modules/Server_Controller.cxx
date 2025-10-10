@@ -3,32 +3,32 @@
 
 void Server_Menu(){ // ModPack menu, Char Based Options
     system("clear");
-    cout << endl;
-    cout << "--- ModPack Controller ---" << endl;
-    cout << endl;
-    cout << "Selected Server: " << Map_Reader(SMAP, 0) << endl;    // Make constantant via settings
-    cout << endl;
-    cout << " M) Select ModPack" << endl;
-    cout << " O) ModPack Options" << endl;  // ModPack settings, file in modpackdir, jvm ver, start file, etc (Settings setup if none)
-    cout << " S) Start Server" << endl;     // Starts a modpack, run check for setting to start, if not run settings setup
-    cout << " E) Server Session" << endl;   // Screens into the running server
-    cout << endl;
-    cout << " Q) Exit" << endl;             // Returns to the main menu
-    cout << endl;
+    std::cout << std::endl;
+    std::cout << "--- ModPack Controller ---" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Selected Server: " << Map_Reader(SMAP, 0) << std::endl;    // Make constantant via settings
+    std::cout << std::endl;
+    std::cout << " M) Select ModPack" << std::endl;
+    std::cout << " O) ModPack Options" << std::endl;  // ModPack settings, file in modpackdir, jvm ver, start file, etc (Settings setup if none)
+    std::cout << " S) Start Server" << std::endl;     // Starts a modpack, run check for setting to start, if not run settings setup
+    std::cout << " E) Server Session" << std::endl;   // Screens into the running server
+    std::cout << std::endl;
+    std::cout << " Q) Exit" << std::endl;             // Returns to the main menu
+    std::cout << std::endl;
 
-    cout << "DEBUG:" << endl;
+    std::cout << "DEBUG:" << std::endl;
     for (auto i : SMAP){
-        cout << i.first << ": " << i.second << endl;
+        std::cout << i.first << ": " << i.second << std::endl;
     }
 
-    cout << endl;
-    cout << "Split_Debug" << endl;
+    std::cout << std::endl;
+    std::cout << "Split_Debug" << std::endl;
 
-    cout << "Select an option: ";
+    std::cout << "Select an option: ";
     char option;
-    cin >> option; // Get user input
+    std::cin >> option; // Get user input
     option = toupper(option);
-    cout << endl;
+    std::cout << std::endl;
 
     switch (option){
     case 'M':
@@ -36,21 +36,21 @@ void Server_Menu(){ // ModPack menu, Char Based Options
         Server_Menu();
         break;
     case 'O':
-        cout << "02";
+        std::cout << "02";
         Server_Menu();
         break;
     case 'S':
-        cout << "O3";
+        std::cout << "O3";
         break;
     case 'E':
-        cout << "O4";
+        std::cout << "O4";
         break;
     case 'Q':
         system("clear");
         Main_Menu();
         break;
     default:
-        cout << "Not an option" << endl;
+        std::cout << "Not an option" << std::endl;
         system("sleep 1");
         system("clear");
         Server_Menu();
@@ -60,19 +60,19 @@ void Server_Menu(){ // ModPack menu, Char Based Options
 
 
 
-vector<string> Server_Lister(int SUO){ // reads the directory containing modspacks and puts them into a vector
-    vector<string> ModPackNames;           // Establishes the vector
-    string path = "/home/skarf/Suwuver/ModPacks/"; // Replace with a var so modpack dir can be changed
+std::vector<std::string> Server_Lister(int SUO){ // reads the directory containing modspacks and puts them into a vector
+    std::vector<std::string> ModPackNames;           // Establishes the vector
+    std::string path = "/home/skarf/Suwuver/ModPacks/"; // Replace with a var so modpack dir can be changed
     int pathlength = path.length();
 
     for (const auto &entry : fs::directory_iterator(path)){ // Adds each output into the vector
-        ModPackNames.push_back(string(entry.path()));
+        ModPackNames.push_back(std::string(entry.path()));
     }
 
     if (SUO == 1){ // if a var is true then show the output of the vector
-        cout << "Listing ModPacks In Directory" << endl;
+        std::cout << "Listing ModPacks In Directory" << std::endl;
         for (int i = 0; i < ModPackNames.size(); i++){
-            cout << " " << i << ") " << ModPackNames[i].erase(0, pathlength) << endl;
+            std::cout << " " << i << ") " << ModPackNames[i].erase(0, pathlength) << std::endl;
         }
     }
 
@@ -82,15 +82,15 @@ vector<string> Server_Lister(int SUO){ // reads the directory containing modspac
 
 
 void Server_Selector(){ // Selects the modpack and assigns it to a var for menu usage
-    vector ModPackNames = Server_Lister(1); // Gets serverlist
-    cout << "Please select a server: ";
+    std::vector ModPackNames = Server_Lister(1); // Gets serverlist
+    std::cout << "Please select a server: ";
     int MPC;
-    cin >> MPC;
-    cout << "Selected Pack: ";
-    string Selected_Server = ModPackNames[MPC];
+    std::cin >> MPC;
+    std::cout << "Selected Pack: ";
+    std::string Selected_Server = ModPackNames[MPC];
 
-    cout << Selected_Server << endl;
-    cout << endl;
+    std::cout << Selected_Server << std::endl;
+    std::cout << std::endl;
 
     //SMAP[0] = Selected_Server;
     SMAP.at(0) = Selected_Server;

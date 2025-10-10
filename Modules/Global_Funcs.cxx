@@ -37,7 +37,7 @@ std::string Map_Reader(std::unordered_map<int,std::string> SMAP, int Element){
 }
 
 
-std::unordered_map<int,std::string> Map_Changer(std::unordered_map<int,std::string> SMAP, int Element, string NewElVal){
+std::unordered_map<int,std::string> Map_Changer(std::unordered_map<int,std::string> SMAP, int Element, std::string NewElVal){
 
     // Finding element with Element
     auto it = SMAP.find(Element);
@@ -50,7 +50,7 @@ std::unordered_map<int,std::string> Map_Changer(std::unordered_map<int,std::stri
     // Updating value associated with key 2
     // using [] operator
     SMAP[Element] = NewElVal;
-    cout << SMAP[Element] << endl;
+    std::cout << SMAP[Element] << std::endl;
     return SMAP;
 }
 

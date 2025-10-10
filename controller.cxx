@@ -12,7 +12,7 @@ int main(){ // Starts the script
 
 
 float PVersion(){ // Establishes the programs current version, jsut to be fancy
-    const float PVer = 0.7;
+    const float PVer = 0.8;
     return PVer;
 }
 
@@ -20,31 +20,31 @@ float PVersion(){ // Establishes the programs current version, jsut to be fancy
 void Main_Menu(){ // Scripts Main Menu
     system("clear");
     float PVer = PVersion();
-    cout << "Program Version: V" << PVer << endl;
-    cout << endl;
-    cout << endl;
-    cout << "##########################" << endl;
-    cout << "###                    ###" << endl;
-    cout << "###  Server Contoller  ###" << endl;
-    cout << "###                    ###" << endl;
-    cout << "##########################" << endl;
-    cout << endl;
-    cout << "--- Server Options ---" << endl;
-    cout << endl;
-    cout << " C) ModPack Controller" << endl;
-    cout << " N) New ModPack Setup" << endl;
-    cout << " A) ModPack Archiving" << endl;
-    cout << " E) Edit Script Option" << endl;
-    cout << " S) System Options" << endl;
-    cout << endl;
-    cout << " Q) Quit" << endl;
-    cout << endl;
+    std::cout << "Program Version: V" << PVer << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << "##########################" << std::endl;
+    std::cout << "###                    ###" << std::endl;
+    std::cout << "###  Server Contoller  ###" << std::endl;
+    std::cout << "###                    ###" << std::endl;
+    std::cout << "##########################" << std::endl;
+    std::cout << std::endl;
+    std::cout << "--- Server Options ---" << std::endl;
+    std::cout << std::endl;
+    std::cout << " C) ModPack Controller" << std::endl;
+    std::cout << " N) New ModPack Setup" << std::endl;
+    std::cout << " A) ModPack Archiving" << std::endl;
+    std::cout << " E) Edit Script Option" << std::endl;
+    std::cout << " S) System Options" << std::endl;
+    std::cout << std::endl;
+    std::cout << " Q) Quit" << std::endl;
+    std::cout << std::endl;
 
-    cout << "Select an option: ";
+    std::cout << "Select an option: ";
     char option;
-    cin >> option; // Get user input
+    std::cin >> option; // Get user input
     option = toupper(option);
-    cout << endl;
+    std::cout << std::endl;
 
     switch (option)
     {
@@ -52,22 +52,22 @@ void Main_Menu(){ // Scripts Main Menu
         Server_Menu();
         break;
     case 'N':
-        cout << "02";
+        std::cout << "02";
         break;
     case 'A':
-        cout << "O3";
+        std::cout << "O3";
         break;
     case 'E':
-        cout << "O4";
+        std::cout << "O4";
         break;
     case 'S':
         Power_Menu();
         break;
     case 'Q':
-        cout << "Exiting program" << endl;
+        std::cout << "Exiting program" << std::endl;
         break;
     default:
-        cout << "Not an option" << endl;
+        std::cout << "Not an option" << std::endl;
         system("sleep 1");
         system("clear");
         Main_Menu();
@@ -78,20 +78,20 @@ void Main_Menu(){ // Scripts Main Menu
 
 void Power_Menu(){ // Power Menu
     system("clear");
-    cout << endl;
-    cout << "--- System Power Menu ---" << endl;
-    cout << endl;
-    cout << " 1) Power Off" << endl;
-    cout << " 2) Reboot" << endl;
-    cout << endl;
-    cout << " Q) Main Menu" << endl;
-    cout << endl;
+    std::cout << std::endl;
+    std::cout << "--- System Power Menu ---" << std::endl;
+    std::cout << std::endl;
+    std::cout << " 1) Power Off" << std::endl;
+    std::cout << " 2) Reboot" << std::endl;
+    std::cout << std::endl;
+    std::cout << " Q) Main Menu" << std::endl;
+    std::cout << std::endl;
 
-    cout << "Select an option: ";
+    std::cout << "Select an option: ";
     char option;
-    cin >> option; // Get user input
+    std::cin >> option; // Get user input
     option = toupper(option);
-    cout << endl;
+    std::cout << std::endl;
 
     switch (option)
     {
@@ -108,7 +108,7 @@ void Power_Menu(){ // Power Menu
         Main_Menu();
         break;
     default:
-        cout << "Not an option" << endl;
+        std::cout << "Not an option" << std::endl;
         system("sleep 1");
         Power_Menu();
         break;

@@ -1,6 +1,7 @@
 #ifndef Header
 #define Header
 
+
 //Library includes
 #include <iostream>     //lib for user inputs
 #include <string>       //lib for strings
@@ -16,21 +17,19 @@
 #include <bits/stdc++.h>
 #include <unistd.h>
 
-//Sets STD as namespace
-// TO BE REMOVED, just need to refactor it all to sure std::
-using namespace std;    //sets namespace
 
 //Sets defs
 namespace fs = std::filesystem; //sets fs namespace
-typedef pair<string, string> pairss;
+typedef std::pair<std::string, std::string> pairss;
 
 
 //--- SPLITTER ---
 
+
 //Global_Funcs
 void Mapping_INIT();
 std::string Map_Reader(std::unordered_map<int,std::string>, int);
-std::unordered_map<int,std::string> Map_Changer(std::unordered_map<int,std::string>, int, string);
+std::unordered_map<int,std::string> Map_Changer(std::unordered_map<int,std::string>, int, std::string);
 
 //Controller
 void Main_Menu();
@@ -39,7 +38,7 @@ float PVersion();
 //int main();
 
 //Server_Controller
-vector<string> Server_Lister(int);
+std::vector<std::string> Server_Lister(int);
 void Server_Menu();
 void Server_Selector();
 
