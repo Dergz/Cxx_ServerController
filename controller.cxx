@@ -1,18 +1,19 @@
 #include "Header.hxx"
-#include "Modules/Global_Funcs.cxx"
+#include "Modules/Mapping.cxx"
 #include "Modules/Server_Controller.cxx"
 
 int main(){ // Starts the script
+    std::cout << "-- DEBUG PRINTING --" << std::endl;
     Mapping_INIT();
-    system("sleep 5"); //Debug sleep
-    system("clear");
+    system("sleep 0.25"); //Debug sleep
     Main_Menu();
+    system("clear");
     return 0;
 }
 
 
 float PVersion(){ // Establishes the programs current version, jsut to be fancy
-    const float PVer = 0.8;
+    const float PVer = 0.9;
     return PVer;
 }
 
@@ -79,7 +80,7 @@ void Main_Menu(){ // Scripts Main Menu
 void Power_Menu(){ // Power Menu
     system("clear");
     std::cout << std::endl;
-    std::cout << "--- System Power Menu ---" << std::endl;
+    std::cout << "--- System Menu ---" << std::endl;
     std::cout << std::endl;
     std::cout << " 1) Power Off" << std::endl;
     std::cout << " 2) Reboot" << std::endl;

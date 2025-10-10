@@ -44,5 +44,6 @@ void Server_Selector();
 
 //Grab Var From Anywhere
 extern std::unordered_map<int,std::string> SMAP;
+extern std::string Server_Dir;
 
 #endif

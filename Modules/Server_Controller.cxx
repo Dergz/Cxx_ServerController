@@ -1,6 +1,9 @@
 // MODULE, Controlls & Manipulates ModPacks
 #include "../Header.hxx"
 
+//Defines ext var
+std::string Server_Dir;
+
 void Server_Menu(){ // ModPack menu, Char Based Options
     system("clear");
     std::cout << std::endl;
@@ -16,13 +19,11 @@ void Server_Menu(){ // ModPack menu, Char Based Options
     std::cout << " Q) Exit" << std::endl;             // Returns to the main menu
     std::cout << std::endl;
 
-    std::cout << "DEBUG:" << std::endl;
-    for (auto i : SMAP){
-        std::cout << i.first << ": " << i.second << std::endl;
-    }
-
-    std::cout << std::endl;
-    std::cout << "Split_Debug" << std::endl;
+    //std::cout << "DEBUG:" << std::endl;
+    //for (auto i : SMAP){
+    //    std::cout << i.first << ": " << i.second << std::endl;
+    //}
+    //std::cout << std::endl;
 
     std::cout << "Select an option: ";
     char option;
@@ -46,13 +47,11 @@ void Server_Menu(){ // ModPack menu, Char Based Options
         std::cout << "O4";
         break;
     case 'Q':
-        system("clear");
         Main_Menu();
         break;
     default:
         std::cout << "Not an option" << std::endl;
         system("sleep 1");
-        system("clear");
         Server_Menu();
         break;
     }
@@ -62,10 +61,11 @@ void Server_Menu(){ // ModPack menu, Char Based Options
 
 std::vector<std::string> Server_Lister(int SUO){ // reads the directory containing modspacks and puts them into a vector
     std::vector<std::string> ModPackNames;           // Establishes the vector
-    std::string path = "/home/skarf/Suwuver/ModPacks/"; // Replace with a var so modpack dir can be changed
-    int pathlength = path.length();
+    auto it = SMAP.find(1);
+    std::string Server_Dir = it->second;
+    int pathlength = Server_Dir.length();
 
-    for (const auto &entry : fs::directory_iterator(path)){ // Adds each output into the vector
+    for (const auto &entry : fs::directory_iterator(Server_Dir)){ // Adds each output into the vector
         ModPackNames.push_back(std::string(entry.path()));
     }
 
