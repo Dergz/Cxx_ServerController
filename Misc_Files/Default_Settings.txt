@@ -1,8 +1,0 @@
---- Default Settings File ---
-
-
-// selected modpackname
-S_Current_Modpack = NULL
-
-// char or num
-S_MainMenu_Mode = char
