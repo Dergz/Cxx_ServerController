@@ -9,7 +9,7 @@ void Mapping_INIT(){
     SMAP.clear();
     SMAP[0] = "None";                                // Current ModPack
     SMAP[1] = "/home/skarf/Suwuver/ModPacks/";       // ModPack Directory
-    SMAP[2] = "Z";                                   // Unassigned
+    SMAP[2] = "Settings.txt";                        // ModPack Settings File, useless?
 
     for (const auto &i : SMAP){
         std::cout << i.first << ": " << i.second << std::endl;

@@ -1,10 +1,23 @@
 #include "Header.hxx"
 #include "Modules/Mapping.cxx"
 #include "Modules/Server_Controller.cxx"
+#include "Modules/SysMenus.cxx"
+#include "Modules/File_Manipulator.cxx"
 
-int main(){ // Starts the script
+int main(int argc, char * argv[]){ // Starts the script
     std::cout << "-- DEBUG PRINTING --" << std::endl;
     Mapping_INIT();
+
+    //Read for last selected ModPack
+    const std::string File_to_Read = "Misc_Files/Previos_Modpack.txt";
+    std::unordered_map<int,std::string> TMPFRM = FileReader(File_to_Read);
+    SMAP = Map_Changer(SMAP, 0, TMPFRM.at(0));
+    
+    std::cout << std::endl;
+    for (const auto &i : SMAP){
+        std::cout << i.first << ": " << i.second << std::endl;
+    }
+
     system("sleep 0.25"); //Debug sleep
     Main_Menu();
     system("clear");
@@ -13,7 +26,7 @@ int main(){ // Starts the script
 
 
 float PVersion(){ // Establishes the programs current version, jsut to be fancy
-    const float PVer = 0.9;
+    const float PVer = 0.11;
     return PVer;
 }
 
@@ -32,13 +45,13 @@ void Main_Menu(){ // Scripts Main Menu
     std::cout << std::endl;
     std::cout << "--- Server Options ---" << std::endl;
     std::cout << std::endl;
-    std::cout << " C) ModPack Controller" << std::endl;
-    std::cout << " N) New ModPack Setup" << std::endl;
-    std::cout << " A) ModPack Archiving" << std::endl;
-    std::cout << " E) Edit Script Option" << std::endl;
-    std::cout << " S) System Options" << std::endl;
+    std::cout << " C) ModPack Controller" << std::endl; //ModPack controller
+    std::cout << " N) New ModPack Setup" << std::endl;  //Triggers Start_File creation
+    std::cout << " A) ModPack Archiving" << std::endl;  //7Zips a pack and moves it to archives folder
+    std::cout << " E) Edit Script Option" << std::endl; //Changes Scripts Option
+    std::cout << " S) System Options" << std::endl;     //System panels
     std::cout << std::endl;
-    std::cout << " Q) Quit" << std::endl;
+    std::cout << " Q) Quit" << std::endl;   //Exits scripts
     std::cout << std::endl;
 
     std::cout << "Select an option: ";
@@ -72,46 +85,6 @@ void Main_Menu(){ // Scripts Main Menu
         system("sleep 1");
         system("clear");
         Main_Menu();
-        break;
-    }
-}
-
-
-void Power_Menu(){ // Power Menu
-    system("clear");
-    std::cout << std::endl;
-    std::cout << "--- System Menu ---" << std::endl;
-    std::cout << std::endl;
-    std::cout << " 1) Power Off" << std::endl;
-    std::cout << " 2) Reboot" << std::endl;
-    std::cout << std::endl;
-    std::cout << " Q) Main Menu" << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "Select an option: ";
-    char option;
-    std::cin >> option; // Get user input
-    option = toupper(option);
-    std::cout << std::endl;
-
-    switch (option)
-    {
-    case '1':
-        system("systemctl poweroff");
-        break;
-    case '2':
-        system("systemctl reboot");
-        break;
-    case 'Q':
-        Main_Menu();
-        break;
-    case 'q':
-        Main_Menu();
-        break;
-    default:
-        std::cout << "Not an option" << std::endl;
-        system("sleep 1");
-        Power_Menu();
         break;
     }
 }

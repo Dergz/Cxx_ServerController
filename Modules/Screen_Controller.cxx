@@ -1,29 +1,21 @@
 #include "../Header.hxx"
 
-// Full swap over to using the settings file w/in the program subfolders
-// ^ Supply modpack directory in settings folder, parsing that for needs
-// ^ Potentially use auto filled out bash files from previous project
+void Server_Starter(){
+    std::cout << "Starting server Init process" << std::endl;
+    std::cout << "Selected Server: " << Map_Reader(SMAP, 0) << std::endl;
+    std::cout << "Server Directory: " << Map_Reader(SMAP, 1) << std::endl;
+    std::cout << std::endl;
+    Screen_Controller();
+    std::cout << std::endl;
+    Test_For_JavaInst();
 
-void Server_Starter(std::string SelectedModPack);    //Starts the server init process
-void Server_Killer(std::string SelectedModPack);     //Kills the running JVM
-void Enter_Screen(std::string SelectedModPack);      //Enters the screen running the jvm
-bool Screen_Controller(std::string SelectedModPack, std::string ModPackDir);   //Actually inits the server
-void ModPack_Settings(std::string SelectedModPack, std::string ModPackDir);   //ModPack Settings maker
-std::string ModPackStartFile(std::string SelectedModPack, std::string ModPackDir); //The file to start the jvm
-bool IsServerRunning(); //Checks if a java instance is running
-
-// Not in proper running order nor all stiched together
-void Server_Starter(std::string SelectedModPack, std::string ModPackDir){ // Main ModPack Controller, Tie Together
-    std::cout << "Starting Server" << std::endl;
-    std::cout << "Selected Pack: " << SelectedModPack << std::endl;
-    std::cout << "Server Direct: " << ModPackDir << std::endl;
-    ModPack_Settings(SelectedModPack,ModPackDir);   // Sets / Checks for settings
-    Screen_Controller(SelectedModPack,ModPackDir);  // Starts the jvm
+    system("Sleep 20");
+    Server_Menu();
 }
 
-// Done, Still in debug mode
-bool Screen_Controller(std::string SelectedModPack, std::string ModPackDir){ // Starts the modpack in a screen session
-    std::cout << "Screen opening for : " << SelectedModPack << std::endl;
+void Screen_Controller(){
+    std::string SelectedModPack = Map_Reader(SMAP, 0);
+    std::string ServerDirectory = Map_Reader(SMAP, 1);
 
     // Starts the screen session
     std::string TMP1("screen -S \"");
@@ -38,7 +30,7 @@ bool Screen_Controller(std::string SelectedModPack, std::string ModPackDir){ // 
     TMP2 += SelectedModPack;
     TMP2 += "\" -X stuff ";
     TMP2 += "\"cd ";
-    TMP2 += ModPackDir;
+    TMP2 += ServerDirectory;
     TMP2 += " \\n\"";
     // system(TMP2.c_str()); //UN COMMENT ON FULL CODE TEST
     std::cout << TMP2 << std::endl;
@@ -49,66 +41,80 @@ bool Screen_Controller(std::string SelectedModPack, std::string ModPackDir){ // 
     std::string TMP3("screen -r ");
     TMP3 += SelectedModPack;
     TMP3 += "\" -X stuff ";
-    TMP3 += ModPackStartFile(SelectedModPack, ModPackDir);
+    TMP3 += ModPackStartFile();
     TMP3 += " \\n\"";
     // system(TMP3.c_str()); //UN COMMENT ON FULL CODE TEST
     std::cout << TMP3 << std::endl;
-
-    system("sleep 10");
-    system("clear");
-
-    // Checks to ensure server is started
-    bool TMP4 = IsServerRunning();
-    return TMP4;
 }
 
-// Currently loops till program is dead, but just want to return if the process is detected
-bool IsServerRunning(){ // Checks if jvm is running
-    // Ensures java started, if not return false
-    // Currently loops till program is dead
-    std::string TMP1("pgreg -x ");
-    TMP1 += "java"; // java works but isnt case sensitive
-    int TMP2 = system(TMP1.c_str()); //UN COMMENT ON FULL CODE TEST
-
-    bool TMP3;
-    if (TMP2 > 0){
-        bool TMP3 = true;
+void Test_For_JavaInst(){
+    if ( system("pidof java") == 0 ){
+        std::cout << "Server is running" << std::endl;
     }
     else{
-        bool TMP3 = false;
+        std::cout << "Server Didnt Start" << std::endl;
     }
-
-    std::cout << TMP3 << std::endl;
-    return TMP3;
 }
 
-// Missing File Filler, Still has debug, figure out settings hierarchy
-void ModPack_Settings(std::string SelectedModPack,std::string ModPackDir){
-    std::cout << "Checking for settings" << std::endl;
-    bool Settings_Check;
+int TFJI_int(){
+    int TMP1;
+    if ( system("pidof java") == 0 ){
+        //std::cout << "DS:TRUE" << std::endl;
+        TMP1 = 1;
+    }
+    else{
+        //std::cout << "DS:FALSE" << std::endl;
+        TMP1 = 0;
+    }
+    system("clear");
+    return TMP1;
+}
 
-    // Check for settings file , doesnt return if it actually there yet
-    std::string TMP1 = ModPackDir;
-    TMP1 += "/settings.txt";
-    if(std::filesystem::exists(TMP1)){
-        std::cout << " exists\n"; // Debug
-        bool Settings_Check = true;}
-    else;{
-        std::cout << " does not exist\n"; // Debug
-        bool Settings_Check = false;}
+std::string ModPackStartFile(){ // NOT DONE YET
+    //should store settings file withing the program folder not the modpacks
+    // read from a file, if not there then make said file
 
-    // if settings are good, exit
-    if (Settings_Check){
+    std::string SelectedModPack = Map_Reader(SMAP, 0);
+    std::string ServerDirectory = Map_Reader(SMAP, 1);
+
+    std::cout << "Debugging:" << std::endl;
+
+    return "DEBUG";
+
+}
+
+void Screen_Killer(){ // pushes a exit statment to java, once dead kill screen session
+    std::cout << "Killing running serevr" << std::endl;
+
+    int TMP2 = TFJI_int();
+    int TMP3 = 0;
+
+    if(TMP2 >= 1){
+        std::cout << "Server Shutdown Started" << std::endl;
+        TMP3 = 1;
+    }
+    else{
+        std::cout << "No running Server" << std::endl;
         return;
     }
-    // If settings arent done fill them out
 
-    std::ofstream outfile (TMP1);
-    outfile << "Test ModPack Settings File" << std::endl;
-    outfile.close();
+    if(TMP3 = 1){
+        int Timer = 0;
 
+        std::string TMP1("screen -r ");
+        TMP1 += Map_Reader(SMAP, 0);
+        TMP1 += "\" -X stuff exit \\n\"";
+        system(TMP1.c_str());
+
+        while(Timer < 120){
+            if(TFJI_int == 0){
+                Timer = 1000;
+            }
+            Timer ++;
+            system("sleep 1");
+        }
+        std::cout << "Server Killed" << std::endl;
+    }
 
     return;
 }
-
-

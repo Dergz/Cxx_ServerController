@@ -1,8 +1,6 @@
 // MODULE, Controlls & Manipulates ModPacks
 #include "../Header.hxx"
-
-//Defines ext var
-std::string Server_Dir;
+#include "Screen_ControllerV2.cxx"
 
 void Server_Menu(){ // ModPack menu, Char Based Options
     system("clear");
@@ -11,12 +9,12 @@ void Server_Menu(){ // ModPack menu, Char Based Options
     std::cout << std::endl;
     std::cout << "Selected Server: " << Map_Reader(SMAP, 0) << std::endl;    // Make constantant via settings
     std::cout << std::endl;
-    std::cout << " M) Select ModPack" << std::endl;
-    std::cout << " O) ModPack Options" << std::endl;  // ModPack settings, file in modpackdir, jvm ver, start file, etc (Settings setup if none)
-    std::cout << " S) Start Server" << std::endl;     // Starts a modpack, run check for setting to start, if not run settings setup
-    std::cout << " E) Server Session" << std::endl;   // Screens into the running server
+    std::cout << " M) Select ModPack" << std::endl;     // Changes the active ModPack
+    std::cout << " R) Redo Start File" << std::endl;    // Redoes the start file
+    std::cout << " S) Start Server" << std::endl;       // Starts a modpack, run check for setting to start, if not run settings setup
+    std::cout << " E) Screen Session" << std::endl;     // Screens into the running server
     std::cout << std::endl;
-    std::cout << " Q) Exit" << std::endl;             // Returns to the main menu
+    std::cout << " Q) Exit" << std::endl;               // Returns to the main menu
     std::cout << std::endl;
 
     //std::cout << "DEBUG:" << std::endl;
@@ -26,25 +24,26 @@ void Server_Menu(){ // ModPack menu, Char Based Options
     //std::cout << std::endl;
 
     std::cout << "Select an option: ";
-    char option;
-    std::cin >> option; // Get user input
-    option = toupper(option);
+    char SMOption;
+    std::cin >> SMOption;
+    SMOption = toupper(SMOption);
     std::cout << std::endl;
 
-    switch (option){
+    switch (SMOption){
     case 'M':
-        Server_Selector(); 
-        Server_Menu();
+        Quick_Check();
         break;
-    case 'O':
-        std::cout << "02";
+    case 'R':
+        V2_Screen_Controller(3);
         Server_Menu();
         break;
     case 'S':
-        std::cout << "O3";
+        V2_Screen_Controller(1);
+        Server_Menu();
         break;
     case 'E':
-        std::cout << "O4";
+        V2_Screen_Controller(2);
+        Server_Menu();
         break;
     case 'Q':
         Main_Menu();
@@ -55,6 +54,7 @@ void Server_Menu(){ // ModPack menu, Char Based Options
         Server_Menu();
         break;
     }
+    gibbe;
 }
 
 
@@ -79,8 +79,6 @@ std::vector<std::string> Server_Lister(int SUO){ // reads the directory containi
     return ModPackNames; // Returns the vecotor containing mod pack names
 }
 
-
-
 void Server_Selector(){ // Selects the modpack and assigns it to a var for menu usage
     std::vector ModPackNames = Server_Lister(1); // Gets serverlist
     std::cout << "Please select a server: ";
@@ -94,4 +92,28 @@ void Server_Selector(){ // Selects the modpack and assigns it to a var for menu 
 
     //SMAP[0] = Selected_Server;
     SMAP.at(0) = Selected_Server;
+
+    // Puts the modpack into the the Previous_Modpack.txt for cross session saving
+    std::string File_to_Write = "Misc_Files/Previos_Modpack.txt";
+    std::ofstream File(File_to_Write);
+    File << Selected_Server;
+    File.close();
+}
+
+void Quick_Check(){// Ensures no server is active before changing the directory
+    if(Check_For_Java() == 0){
+        std::cout << "A Modpack is current Running" << std::endl;
+        std::cout << "Please kill running pack before changing" << std::endl;
+        system("sleep 3");
+        Server_Menu();
+        return;
+    }
+    else{
+        std::cout << "No Server Running, allowing change" << std::endl;
+        Server_Selector();
+        system("sleep 3");
+        Server_Menu();
+        return;
+    }
+    return;
 }
