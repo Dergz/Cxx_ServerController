@@ -26,7 +26,7 @@ int main(int argc, char * argv[]){ // Starts the script
 
 
 float PVersion(){ // Establishes the programs current version, jsut to be fancy
-    const float PVer = 0.11;
+    const float PVer = 0.12;
     return PVer;
 }
 

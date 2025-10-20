@@ -3,16 +3,22 @@
 #include "Screen_ControllerV2.cxx"
 
 void Server_Menu(){ // ModPack menu, Char Based Options
+    std::string ISRUNNING;
+    if(Check_For_Java() == 1){ISRUNNING = "true";}
+    else{ISRUNNING = "false";}
+
     system("clear");
     std::cout << std::endl;
     std::cout << "--- ModPack Controller ---" << std::endl;
     std::cout << std::endl;
     std::cout << "Selected Server: " << Map_Reader(SMAP, 0) << std::endl;    // Make constantant via settings
+    std::cout << "Is Server Running: " << ISRUNNING << std::endl;
     std::cout << std::endl;
     std::cout << " M) Select ModPack" << std::endl;     // Changes the active ModPack
     std::cout << " R) Redo Start File" << std::endl;    // Redoes the start file
     std::cout << " S) Start Server" << std::endl;       // Starts a modpack, run check for setting to start, if not run settings setup
     std::cout << " E) Screen Session" << std::endl;     // Screens into the running server
+    std::cout << " K) Kill Screen session" << std::endl;     // Kills currently running pack
     std::cout << std::endl;
     std::cout << " Q) Exit" << std::endl;               // Returns to the main menu
     std::cout << std::endl;
@@ -43,6 +49,10 @@ void Server_Menu(){ // ModPack menu, Char Based Options
         break;
     case 'E':
         V2_Screen_Controller(2);
+        Server_Menu();
+        break;
+    case 'K':
+        V2_Screen_Controller(5);
         Server_Menu();
         break;
     case 'Q':
@@ -101,7 +111,7 @@ void Server_Selector(){ // Selects the modpack and assigns it to a var for menu 
 }
 
 void Quick_Check(){// Ensures no server is active before changing the directory
-    if(Check_For_Java() == 0){
+    if(Check_For_Java() == 1){
         std::cout << "A Modpack is current Running" << std::endl;
         std::cout << "Please kill running pack before changing" << std::endl;
         system("sleep 3");

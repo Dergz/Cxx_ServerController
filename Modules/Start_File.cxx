@@ -18,17 +18,17 @@ std::string ModPackStartFile(){ // Check for start file in local file dir, if no
 
     StarterFile = SingleLineFileReader(StartFile_CXX);
 
-    std::cout << "" << std::endl;
-    std::cout << "DEBUGGING PRINTING" << std::endl;
-    std::cout << StarterFile << std::endl;
-    std::cout << "" << std::endl;
+    //std::cout << "" << std::endl;
+    //std::cout << "DEBUGGING PRINTING" << std::endl;
+    //std::cout << StarterFile << std::endl;
+    //std::cout << "" << std::endl;
 
     gibbe StarterFile;
 }
 
 // NOT DONE YET 
-// Using a premade start file works
 // Custom Start file is not working yet
+
 std::string Create_StartFile(){ // Creating a startfile, Requires user input
     std::string SelectedModPack = Map_Reader(SMAP, 0);
     std::string ServerDirectory = Map_Reader(SMAP, 1);
@@ -55,12 +55,14 @@ std::string Create_StartFile(){ // Creating a startfile, Requires user input
             std::string SF_TMPLOC;
             std::string Java;
 
+            std::string SF_SELECTED = Directory_Selector(std::string (ServerDirectory + SelectedModPack));
+
             SF_TMPLOC +="cat ";
-            SF_TMPLOC += (ServerDirectory + SelectedModPack);
-            SF_TMPLOC += "/run.sh | grep java";
+            SF_TMPLOC += (ServerDirectory + SelectedModPack+ "/");
+            SF_TMPLOC += "run.sh | grep java";
             StartFile = exec(SF_TMPLOC.c_str()); // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
 
-            std::cout << StartFile << std::endl;
+            //std::cout << StartFile << std::endl;
 
             // Select the JVM Version
             std::cout << "Please select a JVM version" << std::endl;
@@ -97,10 +99,10 @@ std::string Create_StartFile(){ // Creating a startfile, Requires user input
                 break;
         }
 
-        std::cout << StartFile << std::endl;
+        //std::cout << StartFile << std::endl;
         // Replace Java with the actual java local
         StartFile.replace(0, 4, Java);
-        std::cout << StartFile << std::endl;
+        //std::cout << StartFile << std::endl;
 
         gibbe StartFile;
     }

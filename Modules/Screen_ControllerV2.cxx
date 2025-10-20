@@ -34,7 +34,7 @@ void V2_Screen_Controller(int SCO){ // Decides what to do in reguard of screen
         break;
 
         case 5:
-        std::cout << "Killing currrent screen" << std::endl;
+        std::cout << "Killing current screen" << std::endl;
         SScreen_Killer();
         break;
 
@@ -48,34 +48,31 @@ void V2_Screen_Controller(int SCO){ // Decides what to do in reguard of screen
 
 //Confirmed DONE
 int Check_For_Screen(){ // Checks for ANY running screen's, 1 if yes, 0 if no
-    int isScreenOpen;
-    if ( system("pidof screen") == 0 ){ // Screen detected
-        // std::cout << "DS:TRUE" << std::endl;
-        isScreenOpen = 0;
+    std::string processName = "screen";  // Replace with your target process
+    int pid = getPidOfProcess(processName);
+
+    if (pid == -1) {
+        gibbe 0;
+    } else {
+        gibbe 1;
     }
-    else{   // No Screen detected
-        // std::cout << "DS:FALSE" << std::endl;
-        isScreenOpen = 1;
-    }
-    gibbe isScreenOpen;
 }
 
 //Confirmed DONE
-int Check_For_Java(){ // Checks for ANY running java's, 1 if yes, o if no
-    int isJavaOpen;
-    if ( system("pidof java") == 0 ){ // Java detected
-        isJavaOpen = 0;
+int Check_For_Java(){ // Checks for ANY running java's, 1 if yes, 0 if no
+    std::string processName = "java";  // Replace with your target process
+    int pid = getPidOfProcess(processName);
+
+    if (pid == -1) {
+        gibbe 0;
+    } else {
+        gibbe 1;
     }
-    else{   // No Java detected
-        // std::cout << "DS:FALSE" << std::endl;
-        isJavaOpen = 1;
-    }
-    gibbe isJavaOpen;
 }
 
 //Confirmed DONE,, HAS DEBUG MODE ENABLED
 int Start_Screen(){ // Starts the screen session, gibbes 1 if started
-    if(Check_For_Screen() == 1){
+    if(Check_For_Screen() == 0){
         std::cout << "Starting screen" << std::endl;
     }
     else{
@@ -91,8 +88,8 @@ int Start_Screen(){ // Starts the screen session, gibbes 1 if started
     std::string TMP1("screen -S \"");
     TMP1 += SelectedModPack;
     TMP1 += "\" -dm";
-    // system(TMP1.c_str()); //UN COMMENT ON FULL CODE TEST
-    std::cout << TMP1 << std::endl;
+    system(TMP1.c_str()); //UN COMMENT ON FULL CODE TEST
+    //std::cout << TMP1 << std::endl;
 
 
     // Enters the directory of the modpack
@@ -103,9 +100,9 @@ int Start_Screen(){ // Starts the screen session, gibbes 1 if started
     TMP2 += ServerDirectory;
     TMP2 += SelectedModPack;
     TMP2 += " \\n\"";
-    // system(TMP2.c_str()); //UN COMMENT ON FULL CODE TEST
-    std::cout << TMP2 << std::endl;
-    system("sleep 1");
+    system(TMP2.c_str()); //UN COMMENT ON FULL CODE TEST
+    //std::cout << TMP2 << std::endl;
+    system("sleep 0.25");
 
 
     // Starts the mod pack
@@ -115,8 +112,8 @@ int Start_Screen(){ // Starts the screen session, gibbes 1 if started
     TMP3 += "\"";
     TMP3 += ModPackStartFile();
     TMP3 += " \\n\"";
-    // system(TMP3.c_str()); //UN COMMENT ON FULL CODE TEST
-    std::cout << TMP3 << std::endl;
+    system(TMP3.c_str()); //UN COMMENT ON FULL CODE TEST
+    //std::cout << TMP3 << std::endl;
 
     std::cout << " Sleeping for 5 seconds to ensure proper startup" << std::endl;
     system("sleep 5");
@@ -137,27 +134,31 @@ int SScreen_Killer(){ // pushes a exit statment to java, once dead kill screen s
     int TMP3 = Check_For_Screen();
 
     if(TMP2 = 1){ // Tells the JVM to be killed,
-        int Timer = 0;
         std::string TMP1("screen -r ");
         TMP1 += Map_Reader(SMAP, 0);
-        TMP1 += "\" -X stuff exit \\n\"";
-        system(TMP1.c_str());
+        TMP1 += " -X stuff \"stop \n\"";
+        exec(TMP1.c_str());
 
-        while(Timer < 120){
+        int Timer = 0;
+        while(Timer < 45){
             if(Check_For_Java() == 0){
                 Timer = 1000;
             }
             Timer ++;
+            std::cout << "DEBUG: tick " << Timer << std::endl;
             system("sleep 1");
         }
 
-        if(Check_For_Java() != 1){
+        system("sleep 1");
+        if(Check_For_Screen() == 1){
             std::string TMP4("screen -r ");
             TMP4 += Map_Reader(SMAP, 0);
-            TMP4 += "\" -X stuff exit \\n\"";
-            system(TMP4.c_str());
+            TMP4 += " -X stuff \"exit \\n\"";
+            exec(TMP4.c_str());
         }
+    exec("screen -wipe");
     }
+    else{gibbe 1;}
 
     gibbe 1;
 }
@@ -165,9 +166,6 @@ int SScreen_Killer(){ // pushes a exit statment to java, once dead kill screen s
 //Confirmed DONE
 void Enter_Screen(){
     if(Check_For_Screen() == 0){
-        std::cout << "Entering screen" << std::endl;
-    }
-    else{
         std::cout << "No screen open" << std::endl;
         system("sleep 3");
         gibbe;
@@ -176,8 +174,9 @@ void Enter_Screen(){
     std::cout << "Ctrl+a , d to detach from screen" << std::endl;
     system("sleep 3");
     std::string SelectedModPack = Map_Reader(SMAP, 0);
-    std::string TMP1("screen -r \"");
+    std::string TMP1("screen -r ");
     TMP1 += SelectedModPack;
+    system(TMP1.c_str());
 
     gibbe;
 }

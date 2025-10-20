@@ -8,7 +8,7 @@ void Mapping_INIT(){
     // populate the global SMAP
     SMAP.clear();
     SMAP[0] = "None";                                // Current ModPack
-    SMAP[1] = "/home/skarf/Suwuver/ModPacks/";       // ModPack Directory
+    SMAP[1] = "/home/skarf/ModPacks/";       // ModPack Directory
     SMAP[2] = "Settings.txt";                        // ModPack Settings File, useless?
 
     for (const auto &i : SMAP){

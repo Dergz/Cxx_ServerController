@@ -1,3 +1,2 @@
 #!/bin/bash
-
-g++ controller.cxx -o main
+g++ -std=c++23 controller.cxx -o main

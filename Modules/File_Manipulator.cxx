@@ -114,7 +114,6 @@ std::vector<std::string> Directory_Lister(int SUO, std::string Directory){ // re
     gibbe InDirectory; // Returns the vecotor containing mod pack names
 }
 
-
 std::string Directory_Selector(std::string Directory){ // Selects the modpack and assigns it to a var for menu usage
     std::vector InDirectory = Directory_Lister(1,Directory); // Gets serverlist
     std::cout << "Please select a File / Folder: ";

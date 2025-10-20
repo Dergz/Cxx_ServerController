@@ -20,3 +20,33 @@ std::string exec(const char* cmd) {
     return result;
 }
 
+// Shrug tbh X3
+struct FileCloser {
+    void operator()(FILE* file) const {
+        if (file) pclose(file);
+    }
+};
+
+// Doesnt actually get pid just return if it detects the procces in the /proc directory
+int getPidOfProcess(const std::string& processName) {
+    for (const auto& entry : std::filesystem::directory_iterator("/proc")) {
+        if (!entry.is_directory()) continue;
+
+        std::string pidStr = entry.path().filename().string();
+
+        // Skip non-numeric directories
+        if (!std::all_of(pidStr.begin(), pidStr.end(), ::isdigit)) continue;
+
+        std::ifstream commFile(entry.path() / "comm");
+        if (!commFile.is_open()) continue;
+
+        std::string name;
+        std::getline(commFile, name);
+
+        if (name == processName) {
+            return 1;  // Found a matching process
+        }
+    }
+
+    return -1;  // No matching process found
+}

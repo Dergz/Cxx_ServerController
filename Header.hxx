@@ -21,6 +21,10 @@
 #include <cstdio>
 #include <memory>
 #include <array>
+#include <stdexcept>
+#include <sstream>
+#include <cctype>
+#include <algorithm>
 
 
 //Sets defs
@@ -61,6 +65,7 @@ void Power_Menu();
 
 //Misc
 std::string exec(const char*);
+int getPidOfProcess(const std::string&);
 
 //Server_Controller
 std::vector<std::string> Server_Lister(int);
