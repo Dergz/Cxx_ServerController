@@ -1,4 +1,7 @@
 #include "../Header.hxx"
+#include <array>
+#include <algorithm>
+#include <fstream>
 
 // Takes in a command in CMD.c_str() format and return its output
 std::string exec(const char* cmd) {

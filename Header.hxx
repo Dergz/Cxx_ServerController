@@ -4,27 +4,11 @@
 
 //Library includes
 #include <iostream>
+#include <filesystem>
+#include <unordered_map>
 #include <string>
 #include <vector>
-#include <fstream>
-#include <filesystem>
-#include <ncurses.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <optional>
-#include <limits>
-#include <sys/stat.h>
-#include <unordered_map>
-#include <bits/stdc++.h>
-#include <unistd.h>
-#include <set>
-#include <cstdio>
-#include <memory>
-#include <array>
-#include <stdexcept>
-#include <sstream>
-#include <cctype>
-#include <algorithm>
+
 
 
 //Sets defs
@@ -75,7 +59,7 @@ void Server_Selector();
 void Quick_Check();
 
 //Screen_ControllerV2
-void V2_Screen_Controller(char);
+void V2_Screen_Controller(int SCO);
 int Check_For_Screen();
 int Start_Screen();
 int Check_For_Java();

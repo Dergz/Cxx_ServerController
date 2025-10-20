@@ -1,4 +1,5 @@
 #include "../Header.hxx"
+#include <fstream>
 
 // Takes in a file and puts it to an unordered map
 std::unordered_map<int,std::string> FileReader(const std::string File_to_Read){

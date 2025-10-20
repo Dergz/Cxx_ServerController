@@ -1,5 +1,5 @@
 #include "../Header.hxx"
-#include "Misc.cxx"
+//#include "Misc.cxx"
 
 std::string ModPackStartFile(){ // Check for start file in local file dir, if not make it, output string of start cmd
     std::string SelectedModPack = Map_Reader(SMAP, 0);

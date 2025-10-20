@@ -1,4 +1,5 @@
 #include "../Header.hxx"
+#include <fstream>
 
 
 // Takes in a file and returns them as "thing1" = "thing2"

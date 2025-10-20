@@ -10,6 +10,7 @@ void Mapping_INIT(){
     SMAP[0] = "None";                               // Current ModPack
     SMAP[1] = "/home/skarf/ModPacks/";              // ModPack Directory
     SMAP[2] = "/home/skarf/Archives";               // Archives Folder
+    SMAP[3] = "/home/skarf/NewPacks";               // NewPacks Folder
 
     for (const auto &i : SMAP){
         std::cout << i.first << ": " << i.second << std::endl;
