@@ -98,7 +98,6 @@ void Server_Selector(){ // Selects the modpack and assigns it to a var for menu 
     std::string Selected_Server = ModPackNames[MPC];
 
     std::cout << Selected_Server << std::endl;
-    std::cout << std::endl;
 
     //SMAP[0] = Selected_Server;
     SMAP.at(0) = Selected_Server;
