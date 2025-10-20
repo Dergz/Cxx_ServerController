@@ -26,7 +26,7 @@ int main(int argc, char * argv[]){ // Starts the script
 
 
 float PVersion(){ // Establishes the programs current version, jsut to be fancy
-    const float PVer = 0.12;
+    const float PVer = 0.13;
     return PVer;
 }
 
@@ -35,7 +35,6 @@ void Main_Menu(){ // Scripts Main Menu
     system("clear");
     float PVer = PVersion();
     std::cout << "Program Version: V" << PVer << std::endl;
-    std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "##########################" << std::endl;
     std::cout << "###                    ###" << std::endl;
@@ -46,9 +45,8 @@ void Main_Menu(){ // Scripts Main Menu
     std::cout << "--- Server Options ---" << std::endl;
     std::cout << std::endl;
     std::cout << " C) ModPack Controller" << std::endl; //ModPack controller
-    std::cout << " N) New ModPack Setup" << std::endl;  //Triggers Start_File creation
-    std::cout << " A) ModPack Archiving" << std::endl;  //7Zips a pack and moves it to archives folder
-    std::cout << " E) Edit Script Option" << std::endl; //Changes Scripts Option
+    std::cout << " N) New ModPack Setup (WIP)" << std::endl;  //Triggers Start_File creation
+    std::cout << " A) ModPack Archiving (WIP)" << std::endl;  //7Zips a pack and moves it to archives folder
     std::cout << " S) System Options" << std::endl;     //System panels
     std::cout << std::endl;
     std::cout << " Q) Quit" << std::endl;   //Exits scripts
@@ -70,9 +68,6 @@ void Main_Menu(){ // Scripts Main Menu
         break;
     case 'A':
         std::cout << "O3";
-        break;
-    case 'E':
-        std::cout << "O4";
         break;
     case 'S':
         Power_Menu();

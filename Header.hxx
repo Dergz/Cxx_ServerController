@@ -66,6 +66,7 @@ void Power_Menu();
 //Misc
 std::string exec(const char*);
 int getPidOfProcess(const std::string&);
+int copyAndRenameFile(const std::string&, const std::string&, const std::string&);
 
 //Server_Controller
 std::vector<std::string> Server_Lister(int);

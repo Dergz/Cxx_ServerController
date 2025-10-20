@@ -77,6 +77,7 @@ int Start_Screen(){ // Starts the screen session, gibbes 1 if started
     }
     else{
         std::cout << "Another screen already open" << std::endl;
+        system("sleep 3");
         gibbe 0;
     }
 

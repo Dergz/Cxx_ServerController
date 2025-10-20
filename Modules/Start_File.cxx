@@ -81,21 +81,29 @@ std::string Create_StartFile(){ // Creating a startfile, Requires user input
                 Java += "/usr/lib/jvm/";
                 Java += "java-8-openjdk";
                 Java += "/jre/bin/java";
+                // Copys premade java args files and shoves them into the modpacks directory
+                copyAndRenameFile(("Misc_Files/JVM_Args/java-8-openjdk.txt"),(ServerDirectory + SelectedModPack),"user_jvm_args.txt");
                 break;
             case '2':
                 Java += "/usr/lib/jvm/";
                 Java += "java-17-openjdk";
                 Java += "/bin/java";
+                // Copys premade java args files and shoves them into the modpacks directory
+                copyAndRenameFile(("Misc_Files/JVM_Args/java-17-openjdk.txt"),(ServerDirectory + SelectedModPack),"user_jvm_args.txt");
                 break;
             case '3':
                 Java += "/usr/lib/jvm/";
                 Java += "java-21-openjdk";
                 Java += "/bin/java";
+                // Copys premade java args files and shoves them into the modpacks directory
+                copyAndRenameFile(("Misc_Files/JVM_Args/java-21-openjdk.txt"),(ServerDirectory + SelectedModPack),"user_jvm_args.txt");
                 break;
             case '4':
                 Java += "/usr/lib/jvm/";
                 Java += "java-25-openjdk";
                 Java += "/bin/java";
+                // Copys premade java args files and shoves them into the modpacks directory
+                copyAndRenameFile(("Misc_Files/JVM_Args/java-24-openjdk.txt"),(ServerDirectory + SelectedModPack),"user_jvm_args.txt");
                 break;
         }
 
