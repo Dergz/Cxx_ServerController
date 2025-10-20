@@ -7,9 +7,9 @@ std::unordered_map<int,std::string> SMAP;
 void Mapping_INIT(){
     // populate the global SMAP
     SMAP.clear();
-    SMAP[0] = "None";                                // Current ModPack
-    SMAP[1] = "/home/skarf/ModPacks/";       // ModPack Directory
-    SMAP[2] = "Settings.txt";                        // ModPack Settings File, useless?
+    SMAP[0] = "None";                               // Current ModPack
+    SMAP[1] = "/home/skarf/ModPacks/";              // ModPack Directory
+    SMAP[2] = "/home/skarf/Archives";               // Archives Folder
 
     for (const auto &i : SMAP){
         std::cout << i.first << ": " << i.second << std::endl;

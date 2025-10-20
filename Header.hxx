@@ -82,14 +82,6 @@ int Check_For_Java();
 int SScreen_Killer();
 void Enter_Screen();
 
-//Screen_Controller DEPRICATED
-void Server_Starter();
-void Screen_Controller();
-void Test_For_JavaInst();
-int TFJI_int();
-std::string ModPackStartFile();
-void Screen_Killer();
-
 //Start_File
 std::string ModPackStartFile();
 std::string Create_StartFile();

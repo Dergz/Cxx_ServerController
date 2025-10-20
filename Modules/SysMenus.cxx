@@ -20,10 +20,10 @@ void Power_Menu(){ // Power Menu
     switch (option)
     {
     case '1':
-        system("systemctl poweroff");
+        system("sudo systemctl poweroff");
         break;
     case '2':
-        system("systemctl reboot");
+        system("sudo systemctl reboot");
         break;
     case 'Q':
         Main_Menu();

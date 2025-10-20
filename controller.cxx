@@ -18,7 +18,7 @@ int main(int argc, char * argv[]){ // Starts the script
         std::cout << i.first << ": " << i.second << std::endl;
     }
 
-    system("sleep 0.25"); //Debug sleep
+    //system("sleep 5"); //Debug sleep
     Main_Menu();
     system("clear");
     return 0;
@@ -26,7 +26,7 @@ int main(int argc, char * argv[]){ // Starts the script
 
 
 float PVersion(){ // Establishes the programs current version, jsut to be fancy
-    const float PVer = 0.14;
+    const float PVer = 0.15;
     return PVer;
 }
 
@@ -64,10 +64,16 @@ void Main_Menu(){ // Scripts Main Menu
         Server_Menu();
         break;
     case 'N':
-        std::cout << "02";
+        std::cout << "Not Yet Implimented";
+        system("sleep 1");
+        system("clear");
+        Main_Menu();
         break;
     case 'A':
-        std::cout << "O3";
+        std::cout << "Not Yet Implimented";
+        system("sleep 1");
+        system("clear");
+        Main_Menu();
         break;
     case 'S':
         Power_Menu();
