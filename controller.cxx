@@ -1,10 +1,6 @@
 #include "Header.hxx"
-//#include "Modules/Mapping.cxx"
-//#include "Modules/Server_Controller.cxx"
-//#include "Modules/SysMenus.cxx"
-//#include "Modules/File_Manipulator.cxx"
 
-int main(int argc, char * argv[]){ // Starts the script
+int main(){ // Starts the script
     std::cout << "-- DEBUG PRINTING --" << std::endl;
     Mapping_INIT();
 
@@ -26,7 +22,7 @@ int main(int argc, char * argv[]){ // Starts the script
 
 
 float PVersion(){ // Establishes the programs current version, jsut to be fancy
-    const float PVer = 0.16;
+    const float PVer = 0.17;
     return PVer;
 }
 
