@@ -263,3 +263,11 @@ rsync -a "$BUILD_DIR"/*.o "$OLDPWD/.build/" >/dev/null 2>/dev/null || true
 rsync -a "$BUILD_DIR"/*.d "$OLDPWD/.build/" >/dev/null 2>/dev/null || true
 cd "$OLDPWD"
 echo
+
+# ========================================
+# CLEAN UP RAMDISK
+# ========================================
+
+echo "Cleaning up RAM build directory..."
+rm -rf "$RAM_BASE"
+echo "RAM disk cleared."
